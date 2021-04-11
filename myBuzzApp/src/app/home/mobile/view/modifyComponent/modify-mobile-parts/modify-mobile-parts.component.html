@@ -1,0 +1,87 @@
+<!-- <div>{{"mobilePartsService.addDialogCalled  :"+mobilePartsService.addDialogCalled}}</div>
+<div>{{"selectedBrandName  :"+selectedBrandName}}</div>
+<div>{{"selectedModelName  :"+selectedModelName}}</div> -->
+
+<mat-card-title  class="toolBar">{{mobilePartsService.form.controls['id'].value ? "Modify parts" : "New spare Part"}}</mat-card-title>
+  <div fxLayout="row" fxLayoutAlign ="center center" fxFlexFill   class="mainDiv">
+    <mat-card fxFlex="100" fxFlexAlign = "center center">
+      <!-- <form [formGroup]="mobilePartsService.form" (ngSubmit)="onSubmit(mobilePartsService.form)"  novalidate [style.fontSize.px]="fontSize"> -->
+        <form [formGroup]="mobilePartsService.form" novalidate [style.fontSize.px]="fontSize">
+           <div  fxFlexLayoutAlign="stretch" fxLayout ="column" class="productPartForm">         
+            <input type="hidden" formControlName ="id"> 
+            <mat-form-field  color="warn" [appearance]="appearance"> 
+                <mat-label>Brand Name</mat-label>
+                  <select matNativeControl
+                        formControlName ="brandId" 
+                        name="allMobileBrands"
+                        required 
+                        class="form-control" 
+                        disabled
+                        (change)="getAllModelsByBrandOnChange()"> 
+                    <option  value="" selected ></option>
+                    <option *ngFor="let mobileBrand of mobilePartsService.allMobileBrands" [value]="mobileBrand.id">
+                    {{mobileBrand.brandName}}
+                    </option> 
+                </select> 
+                </mat-form-field>
+   
+                <mat-form-field  color="accent" [appearance]="appearance">
+                    <mat-label>Model Name</mat-label>              
+                    <select matNativeControl 
+                    formControlName ="modelId"
+                    name="allMobileModels"
+                    required  class="form-control" >
+                    <option value="" selected></option>
+                    <option *ngFor="let mobibeModel of mobilePartsService.allMobileModels" [value]="mobibeModel.id">
+                        {{mobibeModel.modelName}}
+                    </option>
+                    </select> 
+                </mat-form-field>
+
+                <!-- <mat-form-field  color="accent" [appearance]="appearance">
+                  <mat-label>Model Name test</mat-label>              
+                  <select matNativeControl 
+                  formControlName ="modelId"
+                  name="allMobileModels"
+                  required  class="form-control" >
+                  <option value="" selected></option> 
+                   <option *ngFor="let mobibeModel of mobilePartsService.allMobileModels" [value]="mobibeModel.id">
+                      {{mobibeModel.modelName}}
+                  </option> 
+                  <option value="112" selected >"heloo"</option>
+                  </select> 
+                </mat-form-field>
+                 -->
+        
+                <mat-form-field [appearance]="appearance">
+                <mat-label>Spare Part Name</mat-label>
+                <input matInput  formControlName ="sparePartName"  required placeholder="Spare Part Name">
+                </mat-form-field>
+        
+                <mat-form-field [appearance]="appearance">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName ="spareDiscription" placeholder="Description">
+                </mat-form-field>
+          
+                <div fxLayout="row" fxLayoutAlign ="center stretch"  fxLayoutGap="5px" fxLayout.xs="column">
+                  <button mat-button  fxFlex="50" [mat-dialog-close]="1" (click)="submitdata(mobilePartsService.form)">Save</button>
+                    <!-- <button mat-button mat-raised-button   [mat-dialog-close]="1" fxFlex="50"
+                            [disabled] ="mobilePartsService.form.invalid || !mobilePartsService.form.dirty"    
+                            class="button" >{{mobilePartsService.form.controls['id'].value ? "Update" : "Save"}} 
+                    </button>  -->
+         
+                    <button type ="button" mat-raised-button (click)="closeDialog()" fxFlex="50">
+                      <mat-icon>close</mat-icon>close
+                    </button>  
+                </div>
+ 
+                  <div fxLayoutAlign ="center end" fxFlexFill >
+                    <span class='has-text-danger'> {{errorMsg}}</span>
+                  </div> 
+
+            </div>
+         </form>   
+        </mat-card>
+    </div>
+
+    {{mobilePartsService.form.value |json}}

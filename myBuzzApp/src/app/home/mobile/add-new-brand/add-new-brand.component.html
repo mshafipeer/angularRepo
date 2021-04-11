@@ -1,0 +1,50 @@
+ <!-- using model driven approach-->
+ <!-- {{newbrandForm.value | json}}
+ {{newbrandForm.invalid}}
+ {{newbrandForm.className}}  -->
+ 
+ <div fxLayout="row" fxLayoutAlign ="center center" fxFlexFill   class="mainDiv" >
+  <mat-card fxFlex="60" class="otrbckLn">
+    <mat-card-title  class="toolBar">Add Brand</mat-card-title>
+    <form [formGroup]="newbrandForm" (ngSubmit)="onSubmit(newbrandForm)" 
+          novalidate class="brandForm" [style.fontSize.px]="fontSize">
+
+       <div fxFlexLayoutAlign="stretch" fxLayout ="column"  class="brandFormFeilds" >
+        
+        <mat-form-field   class="search-form-field1" [appearance]="appearance">
+           <input matInput 
+                  name="brandName" 
+                  #name
+                  formControlName ="brandName"
+                  required
+                  placeholder="Brand Name"
+                  autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field   class="search-form-field1" [appearance]="appearance">
+             <input matInput
+                    formControlName ="brandDiscription"
+                    placeholder="Brand Description"
+                    autocomplete="off"
+                    class="form-control" >
+        </mat-form-field>
+ 
+        <button mat-button mat-raised-button 
+                [disabled] ="newbrandForm.invalid" 
+                class="otrbckLn">Save
+        </button>
+
+        <div fxLayoutAlign ="center end" fxFlexFill>
+          <div>
+            <span class='has-text-danger' 
+                  color="red"> {{errorMsg}}
+           </span>
+          </div> 
+          <div>
+            <span class='has-text-danger'> {{responseMsg}}</span>
+          </div>  
+        </div>
+     </div>
+    </form>  
+  </mat-card>
+</div>

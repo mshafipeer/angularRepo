@@ -1,0 +1,41 @@
+
+.mainDiv{
+    outline: 1px solid black;
+}
+mat-card {
+    padding: 0;
+   // border-radius: 15px;
+    //box-shadow: 10px 10px 46px;
+        //border: 1px solid black;  
+}
+
+.brandForm{
+    //padding: 10px 20px 20px 20px;
+    padding: 5px 15px 15px 15px;
+    //padding: top right  down left
+   // border: 1px solid black; 
+   // border: 1px solid red; 
+}
+.brandFormFeilds{
+    padding: 30px ;
+    outline: 1px solid black;
+}
+
+.search-form-field{
+    //outline: 1px solid black;
+    //outline-offset: 1px;
+   //padding: 0px 0px 0px 10px;
+   // margin-left: 10px;
+   padding: 0px 10px 0px 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+::placeholder {  
+    text-align: right; 
+} 
+
+.otrbckLn{
+    //border: 1px solid black; 
+    outline: 1px solid black;
+  }

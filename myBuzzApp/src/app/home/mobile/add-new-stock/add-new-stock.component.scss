@@ -1,0 +1,140 @@
+.mainDiv  {
+  //box-sizing: border-box;
+  padding: 0;
+  //margin: auto;
+  //outline: 1px solid red;
+}
+
+.mainDiv1{
+  padding: 0;
+  //outline: 1px solid red;
+}
+
+.formDiv{
+  padding: 10px;
+  //padding: 0px 10px 0px 10px;
+}
+.fxFlexdiv{
+  //padding: 10px;
+ // outline: 1px solid black;
+}
+
+.bdrLine{
+  outline: 1px solid black;
+}
+
+.toolBar{
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  //height: 40px;
+  display: block;
+  text-align: center;
+  //background-color:  #ffcdd2 ;
+}
+mat-card{
+  outline: 1px solid black;
+}
+
+.logiForm1{
+  padding: 10px 20px 40px 20px;
+ // padding: 40px;
+}
+
+
+.invisible{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+mat-card-title { text-align: center }
+
+.danger1{
+ background-color:  #ffcdd2 ;
+ border:2px solid rgb(16, 230, 80); 
+}
+
+span { display: flex; 
+  justify-content: center }
+
+// .toolBar{
+//   background-image: linear-gradient(27deg, #004E95 50%, #013A6B 50%);
+//   color: white;
+//   box-shadow: 1px 1px 16px ;
+// }
+
+
+// .example-form{
+//     max-width: 80%;
+//     margin: 2rem auto;
+//     border : 2px solid  #92a8d1;;
+//     padding: 2rem;
+//     label{
+//       display: block;
+//     }
+//     input {
+//       display:block;
+//       width: 100%;
+//     }
+//   }
+  
+ 
+
+// .modelBrandDiv{
+//  // padding: 10px;
+//   max-width: 100%;
+//   outline-color: green($color: #000000);
+// }
+
+// .modelNameDiv
+// {
+//  // padding: 20px;
+//   max-width: 100%;
+// }
+
+
+// td{
+//     border: 1px ;
+//     padding: 2px;
+//     align-items: center;
+// }
+
+// td {
+//     border: 1px ;
+//     padding: 2px;
+//     text-align: center;
+//     size: 0cm;
+// }
+// .mainSection{
+//     border-style: groove;
+//     width: 100%;
+// }
+// .stockDiv{
+//    // background-color: #92a8d1;  
+//     width: 90%;
+//   }
+
+
+// // tr:nth-child(even) {
+// //     background-color: #eee;
+// // }
+
+// // th[scope="col"] {
+// //     background-color: #696969;
+// //     color: #fff;
+// // }
+
+// // th[scope="row"] {
+// //     background-color: #d7d9f2;
+// // }
+
+
+// ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+// ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+// ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+//     transform: translateY(-1.1em) scale(.75);
+//     width: 133.33333%;
+// }

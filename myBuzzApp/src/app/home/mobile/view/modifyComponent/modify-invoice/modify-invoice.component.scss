@@ -1,0 +1,33 @@
+mat-card {
+    padding: 0;
+}
+.invoiceForm{
+    padding: 10px 20px 20px 20px;
+    //padding: top right  down left
+}
+
+// .mainDiv{
+//     border:2px solid rgb(16, 230, 80);
+
+// }
+// .mainDiv1{
+//     border:2px solid rgb(145, 40, 231);
+// }
+
+// .mainDiv2{
+//     border:2px solid rgb(197, 23, 81);
+// }
+
+// .invoiceForm{
+//     border:2px solid yellow;
+// }
+
+// .matCard{
+ 
+//  border:2px solid rgba(24, 199, 97, 0.973);
+// }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}

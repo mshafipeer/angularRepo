@@ -1,0 +1,236 @@
+
+<div class="maindiv" fxLayout = "row" fxLayout.xs ="column" fxLayoutAlign="center stretch" fxFlexFill fxLayoutGap="10px" >
+  <div fxFlex="50" fxLayout = "row" fxLayout.xs ="column">
+    <div fxLayoutGap="10px"  fxLayout ="column" class="maindiv bdrLine" fxLayoutAlign="space-around stretch">
+      
+      <mat-form-field>
+        <input  matInput placeholder="First Name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Middle Name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Last Name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input  matInput placeholder="Contact Number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input  matInput placeholder="email Id">
+      </mat-form-field>
+
+    </div>
+
+    <div fxLayoutGap="10px"  fxLayout="column" class=" maindiv bdrLine" fxLayoutAlign="center stretch">
+      <mat-form-field>
+        <input  matInput placeholder="customerArea">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="customerAdress">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="userName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="password">
+      </mat-form-field>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- <form [formGroup]="customerForm" class="normal-form">
+    <mat-grid-tile class="bdrLine">
+      <div class="controles-container">
+        <input type="hidden" formControlName="id">
+        <div>
+          <mat-form-field>
+            <input formControlName="firstName" matInput placeholder="First Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="middleName" matInput placeholder="Middle Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="lastName" matInput placeholder="Last Name">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input formControlName="contactNumber" matInput placeholder="Contact Number">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="emailId" matInput placeholder="email Id">
+          </mat-form-field>
+        </div>
+        
+      </div> -->
+
+     <!--  <div class="controles-container">
+        <div class="add-bottom-padding">
+          <mat-form-field>
+            <input formControlName="emailId" matInput placeholder="e-mail-id">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="emailId" matInput placeholder="e-mail-id">
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input formControlName="emailId" matInput placeholder="email Id">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input formControlName="customerArea" matInput placeholder="Area">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="customerAdress" matInput placeholder="Full address">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="contactNumber" matInput placeholder="City">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="contactNumber" matInput placeholder="City">
+        </mat-form-field>
+        
+      </div>
+ 
+ 
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button color="warn">Clear</button>
+      </div>
+ 
+</form> -->
+
+
+
+<!-- <div  fxLayout = "column"  fxLayoutAlign ="center center" fxFlexFill class="mainDiv">
+    <mat-card fxFlex="25">
+      <div class="toolBar" color="primary">customer Registration</div>
+        <mat-card-title  class="toolBar" color="primary">customer Registration</mat-card-title>
+        <form >
+             
+            <div fxLayoutGap="10px" fxLayout= "row" fxLayoutAlign="space-around center">
+                <mat-form-field [appearance]="appearance" >
+                  <input matInput 
+                          required
+                          formControlName ="firstName"
+                          placeholder="firstName">
+                </mat-form-field>
+  
+                <mat-form-field [appearance]="appearance" >
+                  <input matInput 
+                          required
+                          formControlName ="middleName"
+                          placeholder="middleName">
+                </mat-form-field>
+  
+                <mat-form-field [appearance]="appearance" >
+                  <input matInput 
+                          required
+                          formControlName ="lastName"
+                          placeholder="lastName">
+                </mat-form-field>
+            </div>
+
+            <div >
+              <mat-form-field [appearance]="appearance" >
+                <input matInput 
+                        required
+                        formControlName ="contactNumber"
+                        placeholder="Contact Number">
+              </mat-form-field>
+
+              <mat-form-field [appearance]="appearance" >
+                <input matInput 
+                        required
+                        formControlName ="emailId"
+                        placeholder="email">
+              </mat-form-field>
+
+            </div>
+
+            <div>
+              <mat-form-field [appearance]="appearance" >
+                <input matInput 
+                        required
+                        formControlName ="customerArea"
+                        placeholder="Residential Area">
+              </mat-form-field>
+  
+              <mat-form-field [appearance]="appearance" >
+                <input matInput 
+                        required
+                        formControlName ="customerAdress"
+                        placeholder="Full Address">
+              </mat-form-field>
+            </div> 
+            
+             <div>
+              <mat-form-field [appearance]="appearance" >
+                <input matInput 
+                        required
+                        formControlName ="userName"
+                        placeholder="user name">
+              </mat-form-field>
+  
+              <mat-form-field [appearance]="appearance" >
+                <input matInput 
+                        required
+                        formControlName ="password"
+                        placeholder="customer passowrd">
+              </mat-form-field>
+            </div>      
+        </form>   
+   </mat-card>
+ </div> -->
+
+
+
+<!-- <div class ="singup">
+    <div class="centerdiv">
+        <img src="assets/user-128.png" id ="profilepic">
+        <h2>User signup</h2>
+        <div>
+             <input type="input"  placeholder="user name"  class="inputbox" [(ngModel)]= "signupModel.userName" >
+        </div><br>
+
+        <div>
+            <input type="input" placeholder="name"  class="inputbox" [(ngModel)] = "signupModel.name">
+        </div><br>
+
+        <div>
+            <input type="input"  placeholder="phone"  class="inputbox" [(ngModel)]= "signupModel.phone" >
+        </div><br>
+
+        <div>
+            <input type="input"  placeholder="Email"  class="inputbox" [(ngModel)] = "signupModel.emailId">
+        </div><br>
+
+        <div>
+            <input type="password" placeholder="password" class="inputbox" [(ngModel)] = "signupModel.password">
+        </div><br>
+
+        <div>
+            <button type="button" (click) = "registerUser()" >SignUp</button>
+        </div><br>
+        
+        <div>
+            <span class='has-text-danger'> {{errorText}}</span>
+        </div> 
+    </div>
+</div> -->

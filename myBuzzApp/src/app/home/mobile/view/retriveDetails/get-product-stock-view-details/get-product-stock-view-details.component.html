@@ -1,0 +1,192 @@
+<!-- <div> {{"selectedModelId :"+selectedModelId}}</div> 
+<div> {{"selectedBrandId :"+selectedBrandId}}</div> 
+<div> {{"selectedSparePartId :"+selectedSparePartId}}</div> 
+<div> {{"brandOrModelChanged :"+brandOrModelChanged}}</div>    -->
+<div> {{"requestTime :"}}{{requestTime | date: 'medium'}}</div> 
+<div> {{"responseTime :"+responseTime}}</div>   
+ 
+  
+<mat-card fxLayout ="column" fxLayoutAlign ="start stretch"  class="mainDiv"  fxFlexFill  fxLayoutGap="0px">
+    <div fxFlex ="100" fxFlexAllign= "stretch"  fxFlexOffset ="0" fxLayout ="column" >
+        <div fxLayout ="column" fxLayoutGap="10px" class="mainSearchDiv" fxLayoutGap="5px">
+        <div class="search-div1" > 
+          <mat-form-field  floatLabel="never" class="search-form-field" fxFlex ="25" > 
+            <select matNativeControl [(ngModel)]="selectedBrandId" name="brandNameValue" 
+            (change)="searchModelsByBrandOnChange()" class="form-control" placeholder="select brand"> 
+                <option  value="" selected ></option> 
+                <option *ngFor="let mobileBrand of productStockService.allMobileBrands" [value]="mobileBrand.id">
+                {{mobileBrand.brandName}} 
+                </option>
+            </select> 
+            </mat-form-field> 
+             
+            <mat-form-field  floatLabel="never" class="search-form-field" fxFlex ="25" > 
+            <select matNativeControl [(ngModel)]="selectedModelId" name="modelNameValue" 
+            (change)="searchSparePartsByModelOnChange()" class="form-control" placeholder="Search by Model"> 
+                <option  value="" selected ></option> 
+                <option *ngFor="let mobileModel of productStockService.allMobileModels" [value]="mobileModel.id">
+                {{mobileModel.modelName}} 
+                </option> 
+            </select> 
+            </mat-form-field>
+
+            <mat-form-field  floatLabel="never" class="search-form-field" fxFlex ="25" > 
+                <select matNativeControl [(ngModel)]="selectedSparePartId" name="sparePartNameValue" 
+                (change)="setRequiredValues()" class="form-control" placeholder="Search by Spare Part"> 
+                    <option  value="" selected ></option> 
+                    <option *ngFor="let productParts of productStockService.allMobileSpareParts" [value]="productParts.id">
+                    {{productParts.sparePartName}} 
+                    </option> 
+                </select> 
+            </mat-form-field> 
+ 
+            <button mat-icon-button (click)="searchByBrandOrModelOrSParePart()" *ngIf ="selectedBrandId && selectedModelId" class="createSrchBtn">
+            <mat-icon>search</mat-icon> 
+            </button>
+        </div>
+        <div class="search-div" > 
+            <button mat-raised-button (click)="onCreate()" class= "createSrchBtn">
+                <mat-icon>add</mat-icon>Create
+            </button> 
+            <mat-form-field class="search-form-field"  floatLabel="never">
+                <input class ="inputmat" matInput [(ngModel)] = "searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="clearOnsearch()" class ="addBtn">
+            <mat-icon>close</mat-icon> 
+            </button>
+        </mat-form-field>   
+        </div>
+
+    </div>  
+    
+        <div class="mat-elevation-z8" >
+            <table mat-table [dataSource]="dataSource" matSort class ="createSrchBtn">
+
+            <ng-container matColumnDef="id"> 
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brandId"> 
+                <th mat-header-cell *matHeaderCellDef > Brand Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.brandId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brandName"> 
+                <th mat-header-cell *matHeaderCellDef > Brand Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.brandName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brandDesc"> 
+                <th mat-header-cell *matHeaderCellDef > Brand Desc</th>
+                <td mat-cell *matCellDef="let element"> {{element.brandDesc}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="modelId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Model Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.modelId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="modelName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Model Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.modelName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="modelDesc">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Model Desc </th>
+                <td mat-cell *matCellDef="let element"> {{element.modelDesc}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sparePartId">
+                <th mat-header-cell *matHeaderCellDef>Part Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.sparePartId}} </td>
+            </ng-container>
+
+             <ng-container matColumnDef="sparePartName">
+                <th mat-header-cell *matHeaderCellDef> spare Part</th>
+                <td mat-cell *matCellDef="let element"> {{element.sparePartName}} </td>
+             </ng-container>
+
+              <ng-container matColumnDef="sparePartDesc">
+                <th mat-header-cell *matHeaderCellDef> Desc </th>
+                <td mat-cell *matCellDef="let element"> {{element.sparePartDesc}} </td>
+             </ng-container>
+
+            <ng-container matColumnDef="productQuality">
+                <th mat-header-cell *matHeaderCellDef>Product Quality</th>
+                <td mat-cell *matCellDef="let element"> {{element.productQuality}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="retailBuy">
+                <th mat-header-cell *matHeaderCellDef>Retail Buy</th>
+                <td mat-cell *matCellDef="let element"> {{element.retailBuy}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="retailSell">
+                <th mat-header-cell *matHeaderCellDef>Retail Sell</th>
+                <td mat-cell *matCellDef="let element"> {{element.retailSell}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="wholeSaleBuy">
+                <th mat-header-cell *matHeaderCellDef>Wholesale Buy</th>
+                <td mat-cell *matCellDef="let element"> {{element.wholeSaleBuy}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="wholeSaleSell">
+                <th mat-header-cell *matHeaderCellDef>wholeSale Sell</th>
+                <td mat-cell *matCellDef="let element"> {{element.wholeSaleSell}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef>quantity</th>
+                <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="remaningQuantity">
+                <th mat-header-cell *matHeaderCellDef>Quantity Avaliable</th>
+                <td mat-cell *matCellDef="let element"> {{element.remaningQuantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="invoiceId">
+                <th mat-header-cell *matHeaderCellDef>Invoice Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.invoiceId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="invoiceNumber">
+                <th mat-header-cell *matHeaderCellDef>Invoice Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </td>
+            </ng-container>
+ 
+            <ng-container matColumnDef="productRefrence">
+                <th mat-header-cell *matHeaderCellDef>Product Refrence </th>
+                <td mat-cell *matCellDef="let element"> {{element.productRefrence}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="createdDate">
+                <th mat-header-cell *matHeaderCellDef>Created Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdDate | date :'short'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef >Edit/Delete</th>
+                <td mat-cell *matCellDef="let row"> 
+                    <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                    <button mat-icon-button color ="warn"><mat-icon>delete_outline</mat-icon></button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="loading">
+            <th mat-footer-cell *matFooterCellDef colspan="10"> Loading Data ... </th>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+            <th mat-footer-cell *matFooterCellDef colspan="10"> No Data ... </th>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <tr mat-footer-row *matFooterRowDef= "['loading']" [ngClass] = "{'hide': hideLoadData==true}"></tr> 
+            <tr mat-footer-row *matFooterRowDef= "['noData']" [ngClass] = "{'hide': (dataSource.data.length !=0 || hideLoadData == false)}"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div> 
+        </div> 
+</mat-card>

@@ -1,0 +1,87 @@
+<!-- using template driven approach-->
+<div fxLayoutAlign ="center center" fxFlexFill class="mainDiv bdrLine">
+    <mat-card fxFlex="60" class="bdrLine">
+      <mat-card-title  class="toolBar">INVOICE ENTRY</mat-card-title>
+      <!-- <mat-toolbar color ="primary" class="toolBar">INVOICE ENTRY</mat-toolbar> fxLayoutGap="40px"  -->
+      <form #invoiceForm ="ngForm" (ngSubmit)="onSubmit(invoiceForm)" 
+      [style.fontSize.px]="fontSize" novalidate class="invoiceForm" >
+        <!-- {{ invoiceForm.value  | json}} -->
+        <!-- {{ "test"+ invoiceForm }} -->
+        <div fxFlexLayoutAlign="stretch" fxLayout ="column" class="feildDiv bdrLine"  >  
+          <div fxLayoutAlign="space-between center" fxFlex ="60" fxLayout ="row" fxLayout.xs ="column" class="invoiceAndDate" >
+            <mat-form-field [appearance]="appearance" class="form-group" fxFlex ="50">
+              <mat-label>Invoice Number</mat-label>
+              <input matInput 
+                     placeholder="Invoice Number"
+                     #name="ngModel"
+                     required     
+                     [class.is-invalid]="name.invalid && name.touched"            
+                     name="invoiceNumber"
+                     [(ngModel)]="invoiceModel.invoiceNumber"
+                     class ="form-control">
+           </mat-form-field>
+           <!-- {{name.valid}} -->
+          <mat-form-field  [appearance]="appearance" >
+             <input matInput 
+                    [matDatepicker]="myDatePicker"
+                    placeholder="Invoice Date"
+                    name="invoiceDate"
+                    required 
+                    [(ngModel)]="invoiceModel.invoiceDate">
+              <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+              <mat-datepicker #myDatePicker></mat-datepicker>
+          </mat-form-field>
+          </div>
+         
+        <mat-form-field [appearance]="appearance">
+            <mat-label>Supplier Name</mat-label>
+            <input matInput
+                   placeholder="Supplier Name"
+                   required name="supplierName"
+                   [(ngModel)]="invoiceModel.supplierName">
+        </mat-form-field>
+
+        <mat-form-field [appearance]="appearance">
+            <mat-label>Supplier Details</mat-label>
+          <input matInput
+                 placeholder="Supplier Details"
+                 name="invoiceDetails"
+                 [(ngModel)]="invoiceModel.invoiceDetails" >
+        </mat-form-field>
+
+        <mat-form-field [appearance]="appearance" >
+          <mat-label>Invoice Amount</mat-label>
+          <input matInput 
+               placeholder="Invoice Amount" 
+               name="invoiceAmount"
+               
+               [(ngModel)]="invoiceModel.invoiceAmount">
+               <span matPrefix>Rs&nbsp;</span>
+               <span matSuffix>00</span>
+        </mat-form-field> 
+
+        <button mat-button mat-raised-button  [disabled] ="invoiceForm.form.invalid" class="bdrLine">Save</button>
+      </div>
+    </form>
+    <div fxLayoutAlign ="center end" fxFlexFill>
+      <div>
+          <span class='has-text-danger'> {{errorMsg}}</span>
+      </div> 
+      <!-- <div>
+        <span class='has-text-danger'> {{sucessMsg}}</span>
+    </div>  -->
+    </div>
+
+    </mat-card>
+  </div>
+  <!-- {{invoiceForm.value |json}}  -->
+  <!-- {{invoiceDao.invoiceNumber}}
+  {{invoiceDao.supplierName}}
+  {{invoiceDao.invoiceDetails}}
+  {{invoiceDao.invoiceAmount}} -->
+
+  
+
+
+
+   

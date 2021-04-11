@@ -1,0 +1,18 @@
+<!-- <div fxLayoutAlign ="start stretch"  class="mainDiv" fxFlexFill fxLayout ="column"  fxLayoutGap="5px"> -->  
+   <mat-divider></mat-divider>
+ <div>
+   <!--<app-header (toggleSideBarForMe) ="sideBarToggler($event)" flexLayout="column"></app-header> -->
+   <app-header (toggleSideBarForMe) ="sideBarToggler()" flexLayout="column"></app-header>
+ </div> 
+ <mat-divider></mat-divider>
+   <mat-drawer-container flexLayout="column" class="cantainer">
+      <mat-drawer mode ='side' [opened] = "sideBarOpen"> 
+         <app-sidebar ></app-sidebar> 
+      </mat-drawer>
+      <mat-drawer-content class="content">
+         <router-outlet></router-outlet>
+      </mat-drawer-content>
+   </mat-drawer-container>
+   <mat-divider></mat-divider> 
+   <app-footer fxLayoutAlign="stretch"></app-footer>
+   <!-- </div> -->

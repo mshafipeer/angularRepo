@@ -1,0 +1,79 @@
+  
+   <mat-card  class="matCardSrch" > 
+      <mat-nav-list class='sideListDiv' flexLayout="column">
+        <div class='profile-card'>
+            <div class='header'>
+                <h2 matSubheader>Shafi Peer</h2>
+            </div>
+        </div>
+        <img src="https://material.angular.io/assets/img/examples/shiba11.jpg" alt="Shafi Peer">
+        <mat-divider></mat-divider>
+        <!-- <h2 matSubheader>pages</h2> -->
+
+        <div class = "sideList"> 
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/">Dashboard</a>
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/useLoginPage">useLoginPage</a>
+            
+            <!-- <div class ="expensionBar"> -->
+              <mat-accordion>
+                <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false" class="testPannel">
+                <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/">Dashboard</a>
+                </mat-panel-title>
+                </mat-expansion-panel-header>
+                <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/">Dashboard</a>
+              </mat-expansion-panel> -->
+ 
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false" class="testPannel">
+                <mat-expansion-panel-header  expandedHeight="40px" collapsedHeight="35px" >
+                <mat-panel-title>
+                  Add new product 
+                </mat-panel-title>
+                <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+                </mat-panel-description>
+                </mat-expansion-panel-header>
+                    <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/invoice">Add Invoice</a>
+                    <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewBrand">Add Brand</a>
+                    <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewModel">Add Mobile Model</a>
+                    <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addNewMobileParts">Add Mobile Patrs</a>
+                    <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewstock">Add Stock</a>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false" class="testPannel">
+                <mat-expansion-panel-header expandedHeight="40px" collapsedHeight="35px">
+                <mat-panel-title>  
+                    view/update product 
+                </mat-panel-title>
+                </mat-expansion-panel-header>
+                  <div> 
+                      <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/getInvoiceDetailsLink">Product Invioce</a>
+                      <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/viewBrandDetails">Product Brand</a>
+                      <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/getModelDetailsLink">Product Model</a>
+                      <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/getSparePatrtsLink">Product parts</a>
+                      <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/getProductStocksLink">Product Stock</a>
+                      <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/getProductStocksViewLink">Product view Stock</a>
+                  </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false" class="testPannel">
+                <mat-expansion-panel-header expandedHeight="40px" collapsedHeight="35px">
+                <mat-panel-title>  
+                    System Code Config 
+                </mat-panel-title>
+                </mat-expansion-panel-header>
+                  <div>  
+                      <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/getAndUpdateSystemCode">System Code</a>
+                  </div>
+                </mat-expansion-panel>
+
+              </mat-accordion>
+            <!-- </div> -->
+          </div>
+    </mat-nav-list>
+  </mat-card>

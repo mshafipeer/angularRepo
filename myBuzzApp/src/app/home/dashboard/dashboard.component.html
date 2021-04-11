@@ -1,0 +1,168 @@
+<mat-card-title  class="toolBar">Daily Sales</mat-card-title>
+<div fxLayout="Column" fxLayoutAlign ="center center"   class="mainDiv1" >
+  <mat-card fxFlex="100" class="matCardSrch"> 
+    <div class="search-div"> 
+      <div class="xyz" fxFlex="97">
+        <mat-label >PRODUCT REFERENCE:</mat-label>
+        <mat-form-field class="search-form-field"  floatLabel="never">
+            <input matInput [(ngModel)] = "searchKey" placeholder="Search by product Reference" autocomplete="off" (keyup.enter)="getProductForSales()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="clearOnsearch()">
+              <mat-icon>close</mat-icon> 
+            </button>
+        </mat-form-field> 
+        
+          <mat-form-field class="search-form-field"  floatLabel="never">
+            <input matInput [(ngModel)] = "quantity" placeholder="quanity" autocomplete="off" class="quanity-feild" (keyup.enter)="getProductForSales()">
+        </mat-form-field>
+
+        <button mat-icon-button (click)="getProductForSales()" *ngIf ="searchKey && quantity" class="createSrchBtn">
+          <mat-icon>search</mat-icon> 
+        </button>
+        <!-- <div fxLayoutAlign ="center end">
+          <mat-progress-spinner
+          class="example-margin"
+          [color]="color"
+          mode="indeterminate"
+          diameter="30"
+          *ngIf="isWait" >
+         </mat-progress-spinner>
+        </div> -->
+      </div>
+      <div class="abc">
+        <button mat-icon-button (click)="getSalesContactsAndOffers()" class="createSrchBtn1">
+          <mat-icon color ="primary">person_search</mat-icon> 
+        </button> 
+      </div>
+      
+    </div>
+  </mat-card>
+</div> 
+
+<mat-card class= "mainErrorDiv" fxLayout ="row" fxLayoutAlign ="center center" fxLayoutGap="3px" *ngIf ="errorMsg">
+  <div class="errorDiv" fxFlex="60" fxLayoutAlign ="center center">
+    <span class='has-text-danger' color="red" > {{errorMsg}}
+   </span>
+  </div>
+</mat-card>
+
+<div fxLayout ="row" fxLayoutAlign ="space-between center" fxLayoutGap="10px">
+  <!-- <mat-divider></mat-divider> -->
+  <!-- <div fxFlex ="100" >
+    <h2>Details of DashBoard Component</h2>
+ </div> -->  
+<div fxFlex ="100" class="salesTableDiv">
+  <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" >
+        <!-- Position Column --> 
+        <ng-container matColumnDef="rowIndex"> 
+          <th mat-header-cell *matHeaderCellDef> #No </th>
+          <td mat-cell *matCellDef="let element;index as i;"> [{{ i+1 }}] </td>
+        </ng-container>
+       
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="serialNumber">
+          <th mat-header-cell *matHeaderCellDef> serial Number</th>
+          <td mat-cell *matCellDef="let element"> {{element.serialNumber}} </td>
+        </ng-container>
+        <div class="dataTable"> 
+          <ng-container matColumnDef="productDesc">
+            <th mat-header-cell *matHeaderCellDef> Product Desc </th>
+            <td mat-cell *matCellDef="let element"> {{element.productDesc}} </td>
+          </ng-container>
+        </div>
+        <!-- Name Column -->
+        <ng-container matColumnDef="productRefrence">
+          <th mat-header-cell *matHeaderCellDef> Product Refrence </th>
+          <td mat-cell *matCellDef="let element"> {{element.productRefrence}} </td>
+        </ng-container>
+     
+        <!-- Weight Column -->
+        <ng-container matColumnDef="customerId">
+          <th mat-header-cell *matHeaderCellDef> Customer ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+        </ng-container> 
+     
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="unitPrice">
+          <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+          <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="discount">
+          <th mat-header-cell *matHeaderCellDef> discount </th>
+          <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef> total Price </th>
+          <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdUserId">
+          <th mat-header-cell *matHeaderCellDef> User</th>
+          <td mat-cell *matCellDef="let element"> {{element.createdUserId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdDate">
+          <th mat-header-cell *matHeaderCellDef> createdDate </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="notes">
+          <th mat-header-cell *matHeaderCellDef> notes </th>
+          <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="deletionStatus">
+          <th mat-header-cell *matHeaderCellDef> deletion Status</th>
+          <td mat-cell *matCellDef="let element"> {{element.deletionStatus}} </td>
+        </ng-container>
+ 
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef > Remove Item </th>
+          <td mat-cell *matCellDef="let row"> 
+            <button mat-icon-button color ="warn" (click)="removeItemFromSalesList(row)"><mat-icon>delete_forever</mat-icon></button>
+         </td>
+        </ng-container>
+        
+        <div class="footerRow" >
+          <ng-container matColumnDef="footerCoulmn1">
+            <th mat-footer-cell *matFooterCellDef colspan= "7" >
+              <div class="saveSalesOrder1">
+                <div class="saveSalesOrder" fxLayout ="row" fxLayoutAlign ="space-around center">
+                  <div class="amountTest">
+                    <button mat-raised-button [disabled] ="dailySalesList.length==0" (click)="saveSalesTranaction()">
+                      <mat-icon color ="primary">local_printshop</mat-icon>   Save&PrintBill  
+                    </button>
+                  </div>
+                  <div class="amountTest" >
+                    Grand Total : {{ totalBillAmount  | currency:'INR' :'symbol'}}
+                  </div> 
+                </div> 
+              </div>
+            </th> 
+          </ng-container>
+          <!-- <ng-container matColumnDef="footerCoulmn2">
+            <th mat-footer-cell *matFooterCellDef colspan="2"> <span class="totalValueDiv"> Grand Total : {{ totalBillAmount  | currency:'INR' :'symbol'}}</span>  </th>
+          </ng-container> -->
+        </div>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef= "['footerCoulmn1']" ></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[4, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
+
+<!-- class ="neon hoverenlarge" -->

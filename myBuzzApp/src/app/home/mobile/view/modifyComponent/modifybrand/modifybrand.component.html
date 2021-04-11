@@ -1,0 +1,70 @@
+<mat-card-title  class="toolBar">{{sharedMobileService.newbrandForm.controls['id'].value ? "Modify Brand" : "New Brand"}}</mat-card-title>
+<div fxLayout="row" fxLayoutAlign ="center center" fxFlexFill   class="mainDiv">
+    <mat-card fxFlex="100" fxFlexAlign = "center center">
+      <!-- <mat-card-title  class="toolBar">Add Brand</mat-card-title> -->
+      <!-- <form [formGroup]="sharedMobileService.newbrandForm" (ngSubmit)="onSubmit(sharedMobileService.newbrandForm)"  -->
+      <form [formGroup]="sharedMobileService.newbrandForm"  
+            novalidate class="mat-dialog-content" [style.fontSize.px]="fontSize">
+  
+         <div fxFlexLayoutAlign="stretch" fxLayout ="column"  class="brandForm">
+          
+          <input type="hidden" formControlName ="id"> 
+
+          <mat-form-field  class="inputBox" [appearance]="appearance">
+             <input matInput 
+                    name="brandName" 
+                    #name
+                    formControlName ="brandName"
+                    required
+                    placeholder="Brand Name" 
+                    autocomplete="off"
+                    class="form-control is-invalid">
+          </mat-form-field>
+          <!-- {{name.className}} -->
+  
+          <mat-form-field  class="inputBox"  [appearance]="appearance">
+               <input matInput
+                      formControlName ="brandDiscription"
+                      placeholder="Brand Description"
+                      autocomplete="off"
+                      class="form-control" >
+          </mat-form-field>
+
+          <!-- <mat-form-field  class="inputBox"  [appearance]="appearance"> -->
+            <input  type="hidden"
+                   formControlName ="deletionStatus"                   
+                   class="form-control"> 
+           <!-- </mat-form-field> -->
+           
+          <div fxLayout="row" fxLayoutAlign ="center stretch" fxLayoutGap="5px" fxLayout.xs="column">
+
+            <!-- <button mat-button mat-raised-button  fxFlex="50" [mat-dialog-close]="1" 
+                    [disabled] ="sharedMobileService.newbrandForm.invalid" 
+                    class="button">Save
+            </button> -->  
+            <!-- <button mat-button mat-raised-button [type]="submit" fxFlex="50" [mat-dialog-close]="1" -->
+            <button mat-button mat-raised-button fxFlex="50" [mat-dialog-close]="1" 
+            (click)="submitData(sharedMobileService.newbrandForm)" [disabled] ="sharedMobileService.newbrandForm.invalid">
+                    {{sharedMobileService.newbrandForm.controls['id'].value ? "Update" : "Save"}}
+            </button>
+  
+            <button type ="button" mat-raised-button (click)="closeDialog()" fxFlex="50">
+              <mat-icon>close</mat-icon>close
+           </button> 
+         </div> 
+  
+          <div fxLayoutAlign ="center end" fxFlexFill>
+            <div>
+              <span class='has-text-danger' 
+                    color="red"> {{errorMsg}}
+             </span>
+            </div> 
+            <div>
+              <span class='has-text-danger'> {{errorMsg}}</span> 
+            </div> 
+          </div>
+       </div>
+      </form>
+    </mat-card>
+  </div>
+  <!-- {{sharedMobileSrv.updatedTableRow |json}} -->

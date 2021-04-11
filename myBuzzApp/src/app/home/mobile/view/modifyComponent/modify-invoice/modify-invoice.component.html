@@ -1,0 +1,95 @@
+
+<mat-card-title  class="toolBar">{{invoiceDetailsService?.invoiceForm?.controls['id']?.value ? "Modify Invoice" : "New Invoice"}}</mat-card-title>
+<div fxLayout="row" fxLayoutAlign ="center center" fxFlexFill   class="mainDiv">
+    <mat-card fxFlex="100" fxFlexAlign = "center center"> 
+      <!-- <mat-card-title  class="toolBar">Add Brand</mat-card-title> -->
+      <form [formGroup]="invoiceDetailsService.invoiceForm" (ngSubmit)="onSubmit(invoiceDetailsService.invoiceForm)" 
+            novalidate class="invoiceForm" [style.fontSize.px]="fontSize">
+  
+         <div fxFlexLayoutAlign="stretch" fxLayout ="column"  class="brandForm">
+          
+          <input type="hidden" formControlName ="id">
+
+          <mat-form-field  class="inputBox" [appearance]="appearance">
+             <input matInput 
+                    name="invoiceNumber" 
+                    #name
+                    formControlName ="invoiceNumber"
+                    required
+                    placeholder="Invoice Number" 
+                    autocomplete="off"
+                    class="form-control">
+          </mat-form-field>
+          <!-- {{name.className}} -->
+
+          <mat-form-field  [appearance]="appearance" >
+            <input matInput 
+                   [matDatepicker]="myDatePicker"
+                   placeholder="Invoice Date"
+                   formControlName="invoiceDate"
+                   required>
+             <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+             <mat-datepicker #myDatePicker></mat-datepicker>
+         </mat-form-field>
+  
+          <mat-form-field  class="inputBox"  [appearance]="appearance">
+               <input matInput
+                      formControlName ="supplierName"
+                      placeholder="Supplier Name"
+                      autocomplete="off"
+                      class="form-control">
+          </mat-form-field>
+
+          <mat-form-field  class="inputBox"  [appearance]="appearance">
+            <input matInput
+                   formControlName ="invoiceDetails"
+                   placeholder="Supplier Details"
+                   autocomplete="off"
+                   class="form-control">
+          </mat-form-field>
+
+          <mat-form-field  class="inputBox"  [appearance]="appearance">
+            <input matInput
+                   formControlName ="invoiceAmount"
+                   placeholder="Invoice Amount"
+                   autocomplete="off"
+                   class="form-control">
+                   <span matPrefix>Rs&nbsp;</span>
+                   <span matSuffix>00</span>
+          </mat-form-field>
+
+          <!-- <mat-form-field  class="inputBox"  [appearance]="appearance"> -->
+            <input  type="hidden"
+                   formControlName ="deletionStatus"                   
+                   class="form-control"> 
+           <!-- </mat-form-field> -->
+          
+
+          <div fxLayout="row" fxLayoutAlign ="center stretch" fxLayoutGap="5px" fxLayout.xs="column">
+            <button mat-button mat-raised-button  fxFlex="50"
+                    [disabled] ="invoiceDetailsService.invoiceForm.invalid || !invoiceDetailsService.invoiceForm.dirty"  
+                    class="button">Save 
+            </button>
+
+            <button type ="button" mat-raised-button (click)="closeDialog()" fxFlex="50">
+              <mat-icon>close</mat-icon>close
+           </button> 
+          </div>
+  
+          <div fxLayoutAlign ="center end" fxFlexFill>
+            <div>
+              <span class='has-text-danger' 
+                    color="red"> {{errorMsg}}
+             </span>
+            </div> 
+            <div>
+              <span class='has-text-danger'> {{sucessMsg}}</span>
+            </div> 
+          </div>
+       </div>
+      </form>
+    </mat-card>
+  </div>
+
+
+  {{invoiceDetailsService.invoiceForm.value |json}} 

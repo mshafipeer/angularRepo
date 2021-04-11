@@ -1,0 +1,31 @@
+:host{
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;  
+  padding: 0;
+  box-sizing: border-box;
+  //border: 3px solid yellow;
+} 
+
+mat-drawer-container{
+   height: 100%;
+   box-sizing: border-box;
+  // display: block; 
+  // border: 3px solid yellow;
+}
+
+
+mat-drawer {
+   width: 20%;
+   padding: 0;
+   box-sizing: border-box;
+   //border: 1px solid rgb(47, 141, 125);
+   background-image: linear-gradient(10deg, #cfd8dc 50%, #e0f2f1 80% );
+}
+
+mat-drawer-content{
+padding: 1px;
+box-sizing: border-box;
+outline: 1px solid black;
+}

@@ -1,0 +1,69 @@
+
+:host{
+   // background-color: rgb(135, 235, 143);
+    padding: 0;
+  
+}
+.navbar , a {
+   // color: white;
+    text-decoration: none;
+}
+ul li{
+    list-style: none;
+    font-size: 15px;
+    font-family: cursive;
+    text-decoration: none; 
+} 
+
+.mainBar11{ 
+    height: 10Px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    display: block;
+    margin: auto;
+    background: content-box radial-gradient(rgba(162, 167, 151, 0.164), rgb(144, 144, 160));
+  }
+
+  .mainDiv{ 
+// background: content-box radial-gradient(rgba(162, 167, 151, 0.164), rgb(144, 144, 160));
+    background: content-box radial-gradient(rgb(144, 144, 160), rgb(144, 144, 160));
+    background: content-box radial-gradient(rgba(162, 167, 151, 0.164), rgb(242, 250, 205));
+  }
+.mainBar{
+  // background-color: #92a8d1;
+   //background: content-box radial-gradient(rgb(32, 211, 196), white);
+   //background: content-box radial-gradient(rgb(158, 202, 37), rgb(144, 144, 160));
+   background: content-box radial-gradient(rgba(162, 167, 151, 0.164), rgb(144, 144, 160));
+  // background: content-box radial-gradient(rgba(162, 167, 151, 0.164), rgb(242, 250, 205));
+//    background: content-box radial-gradient(white,black);
+//    background: content-box radial-gradient(rgb(47, 240, 22),rgb(63, 12, 158));
+   height: 10Px;
+   padding: 0;
+   margin: 0;
+   //color: white;
+}
+li{
+    padding: 0px;
+    margin: auto;
+}
+.matButton{
+    background-color:  #e0f2f1;
+    padding: 0px;
+   // height: 9px;
+}
+
+//requered
+.welcomeDiv{
+  font-family: "Times New Roman", Times, serif;
+  //border: 1px solid green;
+  //font-style: italic;
+  font-size: 12px;
+  padding: 0px 0px 0px 10px;
+  //text-decoration: underline;
+}
+.navbar a{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+}

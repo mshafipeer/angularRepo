@@ -1,0 +1,78 @@
+<div fxLayoutAlign ="start stretch"  class="mainDiv" fxFlexFill fxLayout ="column"  fxLayoutGap="5px">
+    <mat-toolbar class = "mainBar" fxLayoutAlign ="space-between center">
+      <mat-toolbar-row>
+        <button mat-icon-button (click) ='toggleSideBar()' class="matButton">  
+          <mat-icon>menu</mat-icon>
+        </button>  
+        <div class="welcomeDiv">Welcome {{systemUser?.userName | titlecase }}</div>
+        <div fxFlex fxLayout= "row" fxLayoutAlign="flex-end" class="mainHeader">
+            <ul fxLayout ="row" fxLayoutGap ="15px">
+              <!-- <li>
+                <div class ="navbar">
+                  <button mat-button [matMenuTriggerFor]="afterMenu" >Mobile Inventory</button>
+                      <mat-menu #afterMenu="matMenu" xPosition="after">
+                          <button mat-menu-item>
+                            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/invoice">Add Invoice</a>
+                            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/invoice">Add Invoice</a>
+                          </button> 
+                          
+                          <button mat-menu-item>
+                            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewBrand">Add Brand</a>
+                          </button>
+                
+                          <button mat-menu-item>
+                            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewModel">Add Mobile Model</a>
+                          </button>
+                          
+                          <button mat-menu-item>
+                            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addNewMobileParts">Add Mobile Patrs</a>
+                          </button>
+                          
+                          <button mat-menu-item>
+                            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewstock">Add Stock</a>
+                          </button>
+                
+                      </mat-menu>
+                </div>
+              </li> -->
+              <!-- <li>
+                <div class ="navbar" fxLayoutGap ="15px">
+                  <a class ="navbar-item" routerLink ="/dashboard">Dashboard
+                  </a>
+                  <a class ="navbar-item" routerLink ="/products">Product
+                  </a>
+                  <a class ="navbar-item" routerLink ="/settings">Settings
+                  </a>
+                  <a class ="navbar-item" routerLink ="/settings">Admin
+                  </a>             
+                </div>
+            </li> -->
+            <!--
+            <li>
+              <button mat-icon-button>
+                  <mat-icon>settings</mat-icon>
+                  
+              </button>
+            </li>
+            <li>
+              <button mat-icon-button>
+                  <mat-icon>help_outline</mat-icon>
+              </button>
+            </li>
+            -->
+            <li>
+              <button mat-button [matMenuTriggerFor]="menu">
+                  <mat-icon>person_outline</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click) ="logOutAction()">
+                      <mat-icon>exit_to_app</mat-icon>
+                      Sign out
+                  </button>
+              </mat-menu>
+          </li>
+          </ul>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+</div>

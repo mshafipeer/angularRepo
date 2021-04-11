@@ -1,0 +1,90 @@
+<mat-card fxLayout ="column"   class="mainDiv" fxFlexFill> 
+    <!-- <mat-card-title fxFlexAlign="stretch" class="toolBar">Brand Details</mat-card-title> -->
+     <div  class="mainDiv1"  fxLayoutGap="10px" fxLayout ="column" fxFlexAllign= "start stretch" >
+        
+          <div class="search-div" fxLayout ="row" fxLayoutGap="5px" >
+            <button mat-raised-button id="createBtn" (click)="onCreate()" fxFlex="10">
+                <mat-icon>add</mat-icon>Create
+            </button> 
+            <mat-form-field class="search-form-field"  floatLabel="never">
+                <input matInput [(ngModel)] = "searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="clearOnsearch()">
+                  <mat-icon>close</mat-icon> 
+                </button>
+            </mat-form-field>
+          </div>
+          <div class="dataTable" fxLayout ="column"  >
+            <div class="mat-elevation-z8">
+             <table mat-table [dataSource]="dataSource" matSort>
+
+              <ng-container matColumnDef="id"> 
+                <th mat-header-cell *matHeaderCellDef> Invoice id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container>
+ 
+               <ng-container matColumnDef="invoiceNumber"> 
+                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
+                 <td mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </td>
+               </ng-container>
+                  
+               <ng-container matColumnDef="supplierName">
+                 <th mat-header-cell *matHeaderCellDef> Supplier Name </th>
+                 <td mat-cell *matCellDef="let element"> {{element.supplierName}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="invoiceDetails">
+                <th mat-header-cell *matHeaderCellDef>Invoice Details </th>
+                <td mat-cell *matCellDef="let element"> {{element.invoiceDetails}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="invoiceDate">
+                <th mat-header-cell *matHeaderCellDef> Invoice Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.invoiceDate}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="invoiceAmount">
+                <th mat-header-cell *matHeaderCellDef> Invoice Amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.invoiceAmount}} </td>
+               </ng-container> 
+
+               <ng-container matColumnDef="invoiceAttachment">
+                <th mat-header-cell *matHeaderCellDef> invoice Attachment </th>
+                <td mat-cell *matCellDef="let element"> {{element.invoiceAttachment}} </td>
+               </ng-container>
+              
+               
+               <ng-container matColumnDef="deletionStatus">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element"> {{element.deletionStatus}} </td>
+              </ng-container>
+ 
+               <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef > Edit/Delete </th>
+                <td mat-cell *matCellDef="let row"> 
+                  <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                  <button mat-icon-button color ="warn"><mat-icon>delete_outline</mat-icon></button>
+               </td>
+              </ng-container>
+
+              <ng-container matColumnDef="loading">
+                <th mat-footer-cell *matFooterCellDef colspan="4"> Loading Data ... </th>
+              </ng-container>
+              <ng-container matColumnDef="noData">
+                <th mat-footer-cell *matFooterCellDef colspan="4"> No Data ... </th>
+              </ng-container>
+           
+               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+               <tr mat-footer-row *matFooterRowDef= "['loading']" [ngClass] = "{'hide': hideLoadData==true}"></tr> 
+               <tr mat-footer-row *matFooterRowDef= "['noData']" [ngClass] = "{'hide': (dataSource.data.length !=0 || hideLoadData == false)}"></tr>
+              </table>
+             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+           </div> 
+          </div>
+         </div> 
+         
+  </mat-card>
+
+
+
+

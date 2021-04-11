@@ -1,0 +1,67 @@
+
+mat-card {
+    padding: 0;
+    outline: 1px solid black;
+}
+.mainDiv{
+    padding: 20px;
+    outline: 1px solid black;
+}
+
+.mdform{
+   padding : 3%;
+    //padding: 5px 15px 15px 15px;
+}
+.modelForm{
+    //padding: 10px 20px 20px 20px;
+    padding: 10px 15px 15px 15px;
+    outline: 1px solid black;
+}
+
+.toolBar{
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    //box-shadow: 10px 10px 16px;
+    //height: 40px;
+    display: block;
+   // margin: auto;
+    //border-radius: 5px;
+}
+
+//   .example-form{
+//     max-width: 700px;
+//     margin: 2rem auto;
+//     border : 2px solid  #92a8d1;;
+//     padding: 2rem;
+//     label{
+//       display: block;
+//     }
+//     input {
+//       display:block;
+//       width: 100%;
+//     }
+//   }
+
+//   .modelDiv{
+//     width: 350px;
+//   }
+
+//   .buttonDiv{
+//     background-color: #92a8d1;
+//    // height: 55px;
+//     width: 100%;
+//   }
+
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+   padding: 0.4em 0px !important;
+  }
+::ng-deep .mat-form-field-label-wrapper {
+   top: -1.5em;
+   }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}

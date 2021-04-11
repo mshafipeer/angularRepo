@@ -1,0 +1,163 @@
+<div fxLayoutAlign ="start stretch"  class="mainDiv" fxFlexFill fxLayout ="column"  fxLayoutGap="5px" >
+    <mat-card-title  fxFlexAlign="stretch" class="toolBar">{{productStockService.form.controls['id'].value ? "Modify Stock" : "Add New Stock"}}</mat-card-title>
+    <form [formGroup]="productStockService.form" (ngSubmit)="onSubmit(productStockService.form)" fxFlexAlign="stretch"> 
+     <mat-card class="fxFlexdiv"  fxFlexAlign="center start" fxLayout ="row"  fxLayout.xs="column" fxLayoutGap="10px" >
+      <mat-card  fxFlexLayout ="column"  fxFlex="35">
+        <input type="hidden" formControlName ="id"> 
+        <div fxFlexAlign="stretch" fxLayout ="column"  class="brandForm">
+           
+           <mat-form-field  color="accent" [appearance]="appearance" >
+              <mat-label>Product Type</mat-label> 
+                <select matNativeControl formControlName ="productType" name="allProductTypes" required  class="form-control">
+                <option value="" selected></option>
+                <option *ngFor="let product of genericService.productTypes.dtlSystemCodeDetails" [value]="product.systemCodeDtlId">
+                  {{product.value}} 
+                </option>
+              </select> 
+           </mat-form-field>
+  
+           <mat-form-field  color="warn" [appearance]="appearance" >
+              <mat-label>Brand Name</mat-label> 
+                    <select matNativeControl
+                          formControlName ="brandId"
+                          name="allMobileBrands"
+                          (change)="searchModelsByBrandOnChange()"
+                          required
+                          class="form-control">
+                    <option  value=" " selected ></option>
+                    <option *ngFor="let mobileBrand of productStockService.allMobileBrands" [value]="mobileBrand.id">
+                    {{mobileBrand.brandName}}
+                    </option>
+                 </select> 
+              </mat-form-field>
+   
+              <mat-form-field  color="accent" [appearance]="appearance" >
+                 <mat-label>Model Name</mat-label>
+                   <select matNativeControl 
+                           formControlName ="modelId"
+                           name="allMobileModels" 
+                           required 
+                           (change)="searchSparePartsByModelOnChange()"          
+                           class="form-control">
+                   <option value="" selected></option>
+                   <option *ngFor="let mobileModel of productStockService.allMobileModels" [value]="mobileModel.id">
+                     {{mobileModel.modelName}}
+                   </option>
+                 </select> 
+               </mat-form-field>
+  
+           <mat-form-field  color="accent" [appearance]="appearance" >
+              <mat-label>part/spare part</mat-label>
+                <select matNativeControl formControlName ="sparePartId" 
+                        name="allSpareParts" required
+                        class="form-control"
+                        (change)="getProductRefrence()">
+                <option value="" selected></option>
+                <option *ngFor="let sparePart of productStockService.allMobileSpareParts" [value]="sparePart.id">
+                  {{sparePart.sparePartName}}
+                </option>
+              </select> 
+           </mat-form-field>
+  
+  
+        </div>
+  </mat-card>
+  
+  <mat-card  fxFlex="30"> <!--middle box -->
+       
+        <div fxFlexAlign="stretch" fxLayout ="column"  class="brandForm">
+        
+           <mat-form-field  color="accent" [appearance]="appearance" >  
+              <input matInput placeholder="Retail Buy" formControlName ="retailBuy" (keyup)="setWholeSaleBuy()">
+           </mat-form-field>
+    
+           <mat-form-field  color="accent" [appearance]="appearance"  > 
+              <input matInput placeholder="Retail Sell" formControlName ="retailSell" (blur)= "getRetailBuyPercentage()">
+           </mat-form-field>
+  
+           <mat-form-field  color="accent" [appearance]="appearance" >
+              <input matInput placeholder="wholeSale Buy" formControlName ="wholeSaleBuy">
+           </mat-form-field>
+    
+           <mat-form-field  color="accent" [appearance]="appearance">
+              <input matInput placeholder="wholeSale Sell" formControlName ="wholeSaleSell" (blur) = "getWholeSaleBuyPercentage()">
+           </mat-form-field> 
+
+        </div>
+  </mat-card> 
+  
+  <mat-card  fxFlex="35"> <!-- third box -->
+        <div fxFlexAlign="stretch" fxLayout ="column"  class="brandForm">
+           <!-- <mat-form-field  color="accent" [appearance]="appearance" >
+              <input matInput placeholder="Quality/Type" formControlName ="productQuality">
+           </mat-form-field> -->
+
+           <mat-form-field  color="accent" [appearance]="appearance" >
+            <mat-label>Quality/Type</mat-label>
+            <select matNativeControl formControlName ="productQuality"
+                    name="allProductQuality" required
+                    class="form-control" (change)= "getProductRefrence()">
+            <option value="" selected></option>
+            <option *ngFor="let productQuality of genericService.productQuality.dtlSystemCodeDetails" [value]="productQuality.systemCodeDtlId">
+               {{productQuality.value}} 
+            </option>
+            </select> 
+         </mat-form-field>
+
+         <mat-form-field  color="accent" [appearance]="appearance" >
+            <input matInput placeholder="product Quantity" formControlName ="quantity">
+            </mat-form-field> 
+            
+          <input type="hidden" formControlName ="invoiceId">
+
+           <mat-form-field   color="accent" [appearance]="appearance"  >
+              <input matInput
+                       placeholder="Invoice Number"
+                       formControlName ="invoiceNumber"
+                       (blur)="checkInvoiveExists()">
+                       <button mat-button  matSuffix mat-icon-button aria-label="Clear" type="button" (click)="searchInvoiceDialog()">
+                        <mat-icon>open_in_new</mat-icon>   
+                      </button>
+           </mat-form-field> 
+            
+           <mat-form-field color="accent" [appearance]="appearance">    
+              <input matInput placeholder="Product Refrence No" formControlName ="productRefrence" readonly>
+              <button mat-button  matSuffix mat-icon-button aria-label="Refresh" type="button" (click)="getProductRefrence()">
+               <mat-icon>refresh</mat-icon>   
+             </button>
+           </mat-form-field>
+           
+           <!-- <mat-form-field  class="invisible" color="accent" [appearance]="appearance" >  
+            <input matInput placeholder="Product Refrence No" formControlName ="productRefrence">
+           </mat-form-field> -->
+  
+        </div>
+      </mat-card>
+    </mat-card>
+    <mat-card>
+      <div fxLayout="row" fxLayoutAlign ="center stretch" fxLayoutGap="5px" fxLayout.xs="column">
+         <button mat-button mat-raised-button  fxFlex="50" 
+                 [disabled] ="((productStockService.form.invalid || !productStockService.form.dirty) || !this.productStockService.validateAllFeilds)"   
+                 class="button">{{productStockService.form.controls['id'].value ? "Update" : "Save"}} 
+         </button> 
+   
+         <button type ="button" mat-raised-button (click)="closeDialog()" fxFlex="50">
+           <mat-icon>close</mat-icon>close
+        </button>  
+      </div>
+     </mat-card>
+
+    </form> 
+    {{productStockService.form.value |json}} 
+  
+    <div fxFlexAlign="center center" class ="errorDisplay" >
+        <span class='has-text-danger' fxFlex ="30" fxFlexAlign="center center"> {{errorMsg}}</span>
+        
+    </div>
+  
+   <div >
+       <span class='has-text-danger'> {{errorMsg}}</span>
+       <span class='has-text-danger'> {{sucessMsg}}</span>
+   </div> 
+   </div>
+   

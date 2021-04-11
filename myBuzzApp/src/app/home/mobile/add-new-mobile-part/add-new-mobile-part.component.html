@@ -1,0 +1,57 @@
+
+<div fxLayoutAlign ="center center" fxFlexFill class="mainDiv">
+    <mat-card fxFlex="60">
+      <mat-card-title  class="toolBar">PRODUCT PARTS</mat-card-title>
+      <!-- <mat-toolbar  class="toolBar">PRODUCT PARTS</mat-toolbar> -->
+      <form [formGroup]="sparePartForm" (ngSubmit)="onSubmit(sparePartForm)" novalidate>
+        <div  fxFlexLayoutAlign="stretch" fxLayout ="column" class="productPartForm">         
+            <mat-form-field  color="warn" [appearance]="appearance"> 
+              <mat-label>Brand Name</mat-label>
+              <!-- <select matNativeControl [(ngModel)]="selectedBrand" name="allMobileBrands" > -->
+              <select matNativeControl
+                      formControlName ="brandId" 
+                      name="allMobileBrands"
+                      required
+                      class="form-control"
+                      (change)="getModelsByBrand()">
+                <option  value=" " selected ></option>
+                <option *ngFor="let mobileBrand of allMobileBrands" [value]="mobileBrand.id">
+                  {{mobileBrand.brandName}}
+                </option>
+              </select> 
+            </mat-form-field>
+
+            <mat-form-field  color="accent" [appearance]="appearance">
+                <mat-label>Model Name</mat-label>
+                <!-- <select matNativeControl [(ngModel)]="selectedModel" name="allMobileModels" > -->
+                  <select matNativeControl formControlName ="modelId" name="allMobileModels" required  class="form-control"  >
+                  <option value="" selected></option>
+                  <option *ngFor="let mobibeModel of allMobileModels" [value]="mobibeModel.id">
+                    {{mobibeModel.modelName}}
+                  </option>
+                </select> 
+              </mat-form-field>
+      
+            <mat-form-field [appearance]="appearance">
+              <mat-label>Spare Part Name</mat-label>
+              <input matInput  formControlName ="sparePartName"  required placeholder="Spare Part Name">
+            </mat-form-field>
+      
+            <mat-form-field [appearance]="appearance">
+              <mat-label>Description</mat-label>
+              <input matInput formControlName ="spareDiscription" placeholder="Description">
+            </mat-form-field>
+      
+            <button mat-button mat-raised-button  [disabled] ="sparePartForm.invalid"  class="button">Save</button>
+         </div>
+       </form>
+       
+       <div fxLayoutAlign ="center end" fxFlexFill>
+        <span class='has-text-danger'> {{errorMsg}}</span>
+       </div> 
+          <!-- {{sparePartForm.value |json}}  -->
+    </mat-card>
+  </div> 
+
+
+  

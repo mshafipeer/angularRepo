@@ -1,0 +1,65 @@
+<div class ="bgimg">
+    <div class="centerdiv">
+        <img src="assets/user-128.png" id ="profilepic">
+        <!--<img src="https://cdn1.iconfinder.com/data/icons/flat-business-icons/128/user-128.png" id ="profilepic">-->
+        <h2>user login</h2>
+        <div>
+           <input type="text" name= "userName" class="inputbox" placeholder="username" [(ngModel)] = "loginDao.email">
+        </div>
+        <br>
+        <div>
+            <input type="Password" name= "Password" class="inputbox" placeholder="Password"  [(ngModel)] = "loginDao.password">
+        </div>
+        <br>
+        <div> 
+            <span class='has-text-danger'> {{loginDao.errorText}}</span>
+        </div>
+        <div>
+           <button type="button" (click) = "loginAction()" >LOGIN</button>
+        </div>
+        <br>
+        <div class="forgotSection">
+            <h4><a routerLink = "/forgot">FORGOT PASSWORD?</a> </h4>
+        </div>
+    </div>      
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class ="column is-half">
+    <h5>Login</h5>
+    <div class="field">
+        <div class="control">
+            <input class="input" type="text" placeholder="userId"  [(ngModel)] = "loginDao.email"> {{loginDao.email}}
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <input class="input" type="password" placeholder="password"  [(ngModel)] = "loginDao.password"> {{loginDao.password}}
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <span class='has-text-danger'> {{loginDao.errorText}}</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+        <a routerLink = "/forgot">Forgot Password</a> 
+        </div>
+    </div>
+    <a class="button is-primary" (click) = "loginAction()">Login</a> 
+</div> -->

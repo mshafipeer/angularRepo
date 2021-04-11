@@ -1,0 +1,24 @@
+<!-- <div>
+    <div class="content-container">
+        <mat-icon id ="close-icon" (click)="closeDialog()">close</mat-icon>
+        <span class="content-span full-width">{{data.message}}</span>
+    </div> 
+    <button mat-flat-button id ="no-button"  [mat-dialog-close] = "false" >No</button>
+    <button mat-flat-button id ="yes-button" [mat-dialog-close] = "true" >Yes</button>
+</div> -->
+
+
+<div fxLayout="column" fxLayoutAlign ="space-between stretch" fxLayoutGap ="3px" class="parent-dialog-div" >
+    <div class="dialog_msg_container" fxLayoutAlign ="center center" > 
+        <span>{{data?.message | titlecase }}</span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign ="start stretch" class="dialog_actions" fxLayoutGap ="2px">
+        <button mat-raised-button id ="no-button"  [mat-dialog-close] = "false"
+            fxFlex="50" color ="warn" class="outerLine">No
+        </button>
+        <button mat-raised-button id ="yes-button" [mat-dialog-close] = "true"
+            fxFlex="50"color ="primary" class="outerLine">Yes
+        </button>
+    </div>
+</div>
+ 

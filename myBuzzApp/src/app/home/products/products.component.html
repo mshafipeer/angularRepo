@@ -1,0 +1,51 @@
+<div fxLayoutAlign ="start stretch"  class="mainDiv" fxLayout ="column"  fxLayoutGap="5px" >
+  <!-- <mat-card-title  fxFlexAlign="stretch" class="toolBar">Add New Stock</mat-card-title> -->
+  <!-- <mat-card-title  fxFlexAlign="stretch" class="toolBar">Add New Stock</mat-card-title>
+  <mat-card-title  fxFlexAlign="stretch" class="toolBar1">Add New Stock</mat-card-title>
+  <mat-card-title  fxFlexAlign="stretch" class="toolBar2">Add New Stock</mat-card-title>
+  <mat-card-title  fxFlexAlign="stretch" class="toolBar3">Add New Stock</mat-card-title> -->
+</div>
+
+
+
+<div class="col-md-3 Dinline-block">
+   <mat-form-field>
+      <input matInput [matDatepicker]="picker2" [max]="currentDate" 
+       placeholder="DOB(DD/MM/YYYY)" required 
+       [(ngModel)]="dob11" 
+        readonly />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+   </mat-form-field>
+</div>
+
+{{"dob :"+dob}}  
+<!-- <mat-form-field  [appearance]="appearance" >
+   <input matInput 
+          [matDatepicker]="myDatePicker"
+          placeholder="Invoice Date"
+          formControlName="invoiceDate"
+          required>
+    <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #myDatePicker></mat-datepicker>
+</mat-form-field> -->
+<div>
+ 
+      <input [matDatepicker]="basicDatepicker" 
+      [min]="minDate" 
+      [max]="maxDate"
+      [(ngModel)] = "datePickerValue">
+      <mat-datepicker-toggle [for]="basicDatepicker" >
+         <mat-icon matDatepickerToggleIcon>
+            home
+        </mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #basicDatepicker startView="year"  [startAt]="startDate1" ></mat-datepicker>
+
+     
+</div>   
+ 
+<button type="button" (click)= "convertStr()">change</button>
+ 
+{{"datePickerValue :["+datePickerValue }}
+{{"basicDatepicker:"+basicDatepicker |json}}}

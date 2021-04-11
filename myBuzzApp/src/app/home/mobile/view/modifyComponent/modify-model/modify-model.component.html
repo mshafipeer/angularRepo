@@ -1,0 +1,66 @@
+<mat-card-title  class="toolBar">{{modelDetailService.modelForm.controls['id'].value ? "Modify Model" : "New Model"}}</mat-card-title>
+  <div fxLayout="row" fxLayoutAlign ="center center" fxFlexFill   class="mainDiv">
+    <mat-card fxFlex="100" fxFlexAlign = "center center">
+   
+    <form [formGroup]="modelDetailService.modelForm" (ngSubmit)="onSubmit(modelDetailService.modelForm)"  novalidate [style.fontSize.px]="fontSize">
+      <div fxFlexLayoutAlign="stretch" fxLayout ="column" class="modelForm"> 
+        <input type="hidden" formControlName ="id">    
+        
+         <mat-form-field  color="warn"[appearance]="appearance" *ngIf ="modelDetailService.addDialogCalled==true"> 
+            <mat-label>Brand Name</mat-label>
+            <select matNativeControl formControlName ="brandId" name="modelDetailService.allMobileBrands" required  class="form-control"  >
+              <option value=" " selected ></option>
+              <option *ngFor="let mobileBrand of modelDetailService.allMobileBrands" [value]="mobileBrand.id">
+                {{mobileBrand.brandName}} 
+              </option> 
+            </select> 
+          </mat-form-field>
+
+          <mat-form-field  color="warn"[appearance]="appearance" *ngIf ="modelDetailService.addDialogCalled==false"> 
+            <input matInput [value] ="modelDetailService.sharedBrandName" disabled="true" class ="brndName">
+          </mat-form-field>
+  
+          <mat-form-field [appearance]="appearance" class="form-group">
+            <input matInput 
+                    required
+                    formControlName ="modelName"
+                    placeholder="Model Name"
+                    class="form-control">
+          </mat-form-field>
+
+          <mat-form-field [appearance]="appearance" class="form-group">
+            <input matInput formControlName ="modelDiscription" placeholder="Model Description">
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutAlign ="center stretch" fxLayoutGap="5px" fxLayout.xs="column">
+            <button mat-button mat-raised-button  fxFlex="50"
+                    [disabled] ="modelDetailService.modelForm.invalid || !modelDetailService.modelForm.dirty"   
+                    class="button">{{modelDetailService.modelForm.controls['id'].value ? "Update" : "Save"}} 
+            </button> 
+
+            <button type ="button" mat-raised-button (click)="closeDialog()" fxFlex="50">
+              <mat-icon>close</mat-icon>close
+           </button>  
+          </div>
+
+            <!-- <button mat-button mat-raised-button  [disabled] ="modelDetailService.modelForm.invalid" class="button" >Save </button>
+            <div fxLayoutAlign ="center end">
+            <mat-progress-spinner
+                class="example-margin"
+                [color]="color"
+                mode="indeterminate"
+                diameter="50"
+                *ngIf="isWait" >
+           </mat-progress-spinner>
+        </div>  -->
+          
+          <div fxLayoutAlign ="center end" fxFlexFill >
+            <span class='has-text-danger'> {{errorMsg}}</span>
+          </div> 
+      </div>
+      <!-- {{modelDetailService.modelForm.value |json}} -->
+    </form>
+  </mat-card>
+</div>
+
+

@@ -1,0 +1,53 @@
+ <!-- using model driven approach with FormBuilder--> 
+<div fxLayoutAlign ="center center" fxFlexFill class="mainDiv">
+  <mat-card fxFlex="60">
+    <mat-card-title  class="toolBar">Product Model</mat-card-title>
+    <form [formGroup]="newModelForm" (ngSubmit)="onSubmit(newModelForm)"  
+    novalidate [style.fontSize.px]="fontSize" class="mdform">
+      <div fxFlexLayoutAlign="stretch" fxLayout ="column" class="modelForm"> 
+          <mat-form-field  color="primary"[appearance]="appearance"> 
+            <!-- <mat-label>Brand Name</mat-label> -->
+            <!-- <select matNativeControl [(ngModel)]="selectedBrand" name="allMobileBrands" >  template driven-->
+            <select matNativeControl formControlName ="brandId" name="allMobileBrands"  placeholder="Brand Name" required  class="form-control"  >
+              <option  value=" " selected ></option>
+              <option *ngFor="let mobibeBrand of allMobileBrands" [value]="mobibeBrand.id">
+                {{mobibeBrand.brandName}}
+              </option>
+            </select> 
+          </mat-form-field>
+
+          <mat-form-field [appearance]="appearance" class="form-group">
+            <input matInput 
+                    required
+                    formControlName ="modelName"
+                    placeholder="Model Name"
+                    class="form-control">
+          </mat-form-field>
+
+          <mat-form-field [appearance]="appearance" class="form-group">
+            <input matInput formControlName ="modelDiscription" placeholder="Model Description">
+          </mat-form-field>
+
+            <button mat-button mat-raised-button  [disabled] ="newModelForm.invalid"  class="button" >Save </button>
+            <div fxLayoutAlign ="center end">
+              <mat-progress-spinner
+                  class="example-margin"
+                  [color]="color"
+                  mode="indeterminate"
+                  diameter="50"
+                  *ngIf="isWait" >
+            </mat-progress-spinner>
+           </div>
+          
+      
+          <div fxLayoutAlign ="center end" fxFlexFill >
+            <span class='has-text-danger'> {{errorMsg}}</span>
+          </div> 
+      
+      </div>
+      <!-- {{newModelForm.value |json}} -->
+    </form>
+  </mat-card>
+</div>
+
+

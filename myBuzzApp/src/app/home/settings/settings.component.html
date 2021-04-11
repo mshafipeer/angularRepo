@@ -1,0 +1,101 @@
+
+<mat-form-field>
+  <mat-label>Message</mat-label>
+  <input matInput value="Disco party!" #message>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Action</mat-label>
+  <input matInput value="Dance" #action>
+</mat-form-field>
+<button mat-stroked-button (click)="openSnackBar(message.value, action.value)">Show snack-bar</button>
+
+<mat-divider></mat-divider>
+<div class="matSelect">
+
+  <mat-form-field>
+    <mat-label>Panel color</mat-label>
+    <mat-select [formControl]="panelColor"
+                panelClass="example-panel-{{panelColor.value}}">
+      <mat-option value="red">Red</mat-option>
+      <mat-option value="green">Green</mat-option>
+      <mat-option value="blue">Blue</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+
+</div>
+<mat-divider></mat-divider>
+
+<div>
+  <h4>Menu bar </h4>
+  <button mat-button [matMenuTriggerFor]="afterMenu">Mobile Inventory</button>
+      <mat-menu #afterMenu="matMenu" xPosition="after">
+          <button mat-menu-item>
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/invoice">Add Invoice</a>
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/invoice">Add Invoice</a>
+          </button>
+          
+          <button mat-menu-item>
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewBrand">Add Brand</a>
+          </button>
+
+          <button mat-menu-item>
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewModel">Add Mobile Model</a>
+          </button>
+          
+          <button mat-menu-item>
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addNewMobileParts">Add Mobile Patrs</a>
+          </button>
+          
+          <button mat-menu-item>
+            <a mat-list-item routerLinkActive ='list-item-active' routerLink ="/addnewstock">Add Stock</a>
+          </button>
+
+      </mat-menu>
+
+
+      <mat-divider></mat-divider>
+
+<div>
+  <h4>snipper progress bar </h4>
+    <mat-progress-spinner
+      class="example-margin"
+      mode="indeterminate"
+      value ="20" 
+      diameter="40"
+      *ngIf="isWait"
+      >
+  </mat-progress-spinner>
+</div>
+     
+</div> 
+
+<!-- mat pannel-->
+<div class ="expensionBar">
+  <mat-accordion>
+    <mat-expansion-panel
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <!-- <mat-panel-title>
+     view/update product 
+    </mat-panel-title> -->
+    <!-- <mat-panel-description>
+    Currently I am {{panelOpenState ? 'open' : 'closed'}}
+    </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <!-- <p>I'm visible because I am open</p> -->
+    </mat-expansion-panel>
+  </mat-accordion>  
+</div>
+
+
+<mat-divider></mat-divider>
+
+<div class= "search-form">
+  <mat-form-field>
+    <mat-placeholder class="placeholder">Search</mat-placeholder>
+    <input type="text" class="toolbar-search" matInput formControlName="search">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>

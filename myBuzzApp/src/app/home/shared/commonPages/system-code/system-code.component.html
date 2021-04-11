@@ -1,0 +1,143 @@
+
+<div fxLayout="column" fxLayoutAlign ="center center"  class="rootDiv" >
+    <mat-card class="sys-code-div" > 
+        <mat-card-title  class="toolBar"> {{'Manage System Code' |titlecase}} </mat-card-title>
+        <div class="sys-code-div-contents"  fxLayout="column" fxLayoutGap ="5px">
+            <mat-card  class="search-div"  fxLayout="column" fxLayoutGap ="5px">
+                <div fxLayoutGap ="5px">
+                    <mat-form-field class="search-form-field"  floatLabel="never" >
+                        <input matInput [(ngModel)] = "systemCodeMstDetails.systemCodeType" placeholder="System Code Type" [readonly] = "isValidCode" autocomplete="off">
+                    </mat-form-field>
+                    
+                      <mat-form-field class="search-form-field"  floatLabel="never">
+                        <input matInput [(ngModel)] = "systemCodeMstDetails.systemCodeDesc" placeholder="Desc" autocomplete="off" >
+                    </mat-form-field>
+            
+                    <button mat-icon-button (click)="getSystemCodeDetails()" class="srchBtn" >
+                      <mat-icon>search</mat-icon> 
+                    </button> 
+                </div>
+        
+                <div class="secondDiv" fxLayoutGap ="5px" fxLayoutAlign ="center center" >
+                    <button mat-raised-button (click)="addNewRow()"   fxFlex="50" class="outerLine"> 
+                        <mat-icon color ="primary">add</mat-icon>Add
+                    </button> 
+                    
+                    <button mat-raised-button (click)="onCreate()"   fxFlex="50" class="outerLine">
+                        <mat-icon color ="warn">delete_outline</mat-icon>Delete
+                    </button>
+                    
+                </div>
+                <div class="errorDiv" fxLayoutAlign ="center center">
+                    <div fxLayoutAlign ="center end">
+                        <mat-progress-spinner
+                        class="example-margin"
+                        [color]="color"
+                        mode="indeterminate"
+                        diameter="30"
+                        *ngIf="isWait" >
+                       </mat-progress-spinner>
+                      </div>
+                    <span class='has-text-danger'> 
+                        {{errorMsg}}
+                    </span>
+                </div>
+            </mat-card>
+    
+            <mat-card class="dtlSystemCode"  fxLayout="column"  *ngIf="dataArray.length"  fxLayoutGap="2px">
+                <div fxFlex="100">
+                    <div class="dtlSystemCodeHeader" fxLayoutAlign ="space-around center"> 
+                        <mat-label >Code </mat-label> 
+                        <mat-label >Value</mat-label> 
+                  </div>
+                </div>
+                
+                <form (ngSubmit)="onSubmit()">
+                    <ng-container *ngFor ="let obj of dataArray; let i = index">
+                     <div fxLayout="row"  fxLayoutGap="5px" class="eachFormRow" *ngIf = "obj.deletionStatus==='N'">
+                        <!-- <div >{{i+1}}</div> -->
+                        <input type="hidden"  name = "systemCodeDtlId{{i}}" [(ngModel)] ="obj.systemCodeDtlId">
+                        <input type="hidden"  name = "systemCodeId{{i}}" [(ngModel)] ="obj.systemCodeId">
+                        <input type="hidden"  name = "deletionStatus{{i}}"[(ngModel)] ="obj.deletionStatus">
+                        <mat-form-field  class="search-form-field" [appearance]="appearance">
+                            <input matInput 
+                            name="valueCode{{i}}"  
+                            [(ngModel)] ="obj.valueCode"
+                            required>
+                        </mat-form-field>
+        
+                        <mat-form-field  class="search-form-field" [appearance]="appearance">
+                            <input matInput 
+                            name="value{{i}}" 
+                            [(ngModel)] ="obj.value"
+                            required>
+                        </mat-form-field>
+        
+                        <div class="dtlSysCodeBtns">
+                        <button mat-icon-button type="button" (click)="deleteRow(i,obj)" name="dltBtn{{i}}">
+                            <mat-icon color ="warn" >delete_outline</mat-icon> 
+                        </button>
+                        </div>
+                     </div>            
+                </ng-container> 
+                </form>
+            </mat-card> 
+            <!-- <mat-card> -->
+                <!-- <div class="outerLine outerLine1" fxLayoutGap ="5px"  fxLayout="column" fxLayoutAlign ="center stretch" > -->
+                    <button mat-raised-button (click)="saveDetails()"  class="outerLine" *ngIf="dataArray.length"> 
+                        <mat-icon color ="primary">add</mat-icon>Save
+                    </button> 
+                <!-- </div> -->
+            <!-- </mat-card> -->
+        </div>
+    </mat-card>
+</div>
+
+
+
+
+
+ <!-- <mat-card  class="mySysCodes"  fxFlex="80" fxLayout="column"> -->
+        <!-- <form [formGroup]="mySysCodes" (ngSubmit)="onSubmit(form)" novalidate class="sysCodeForm"
+         [style.fontSize.px]="fontSize" class ="search-div" > -->
+         <!-- <form [formGroup]="mySysCodes">
+          <ng-container *ngFor ="let formGroup1 of mySysCodes; let i = index">
+             <div [formGroup] = "formGroup1">
+                 <label for="name">Name</label>
+                 <input type="text" formControlName ="name">
+                 <label for="Season">Name</label>
+                 <input type="text" formControlName ="season">
+             </div>
+
+         </ng-container> -->
+        <!-- <div fxLayout="row" fxLayoutGap="5px" class ="search-div1"  *ngFor ="let obj of dtlSystemCodeDetailsList; let i = index">
+            
+            <input type="hidden"  name = "systemCodeDtlId{{i}}" formControlName ="systemCodeDtlId">
+            <input type="hidden"  name = "systemCodeId{{i}}" formControlName ="systemCodeId">
+            <input type="hidden"  name = "deletionStatus{{i}}" formControlName ="deletionStatus">
+            <input type="text" value="{{i}}" >
+            <mat-form-field  class="inputBox" [appearance]="appearance">
+                <input matInput 
+                   name="valueCode{{i}}" 
+                   formControlName ="valueCode"
+                   required
+                   placeholder="value Code"
+                   class="search-form-field">
+            </mat-form-field>
+
+            <mat-form-field  class="inputBox" [appearance]="appearance">
+                <input matInput 
+                   name="value{{i}}" 
+                   formControlName ="value"
+                   required
+                   placeholder="value"  
+                   class="search-form-field">
+            </mat-form-field>
+
+            <button mat-icon-button (click)="deleteRow(i)"  name="dltBtn{{i}}" >
+                <mat-icon>delete_outline</mat-icon> 
+            </button>
+        </div> -->
+        <!-- </form>
+    </mat-card> -->
+
